@@ -7,6 +7,11 @@ module.exports = function(defaults) {
     // Add options here
   });
 
+
+  app.import('bower_components/jquery-validation/dist/jquery.validate.js');
+  app.import('bower_components/jquery-validation/dist/additional-methods.js');
+  app.import('bower_components/js-cookie/src/js.cookie.js');
+  app.import('bower_components/moment/min/moment-with-locales.js');
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

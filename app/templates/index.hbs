@@ -1,0 +1,108 @@
+<div>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Sistema de Gestión de Proyectos</a>
+			</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Bienvenido, </a></li>
+					<li class="dropdown">
+	  					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{currentName}}<span class="caret"></span></a>
+	  					<ul class="dropdown-menu">
+				            <li><a href="#">Perfil</a></li>
+				            <li role="separator" class="divider"></li>
+				            <li><a {{action 'logout'}}>Cerrar Sesión</a></li>
+	 					 </ul>
+					</li>
+				</ul>
+ 			</div>
+		</div>
+	</nav>
+</div>
+<div class="container-fluid">
+
+	<div class="row">
+		<div class="col-md-12 vcenter">
+			<div class="well">
+				<form id="loginForm">
+
+					<div class="row">
+		      			<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group">
+								  {{input name="usuario" type="text" class="form-control" placeholder="Usuario" value=username}}
+								  <span class="input-group-addon">{{fa-icon "user"}}</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<div class="input-group">
+								  {{input name="clave" type="password" class="form-control" placeholder="Contraseña" value=password}}
+								  <span class="input-group-addon">{{fa-icon "lock"}}</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-xs-12">
+			            <div id="alertMsg" class="alert alert-dismissible" role="alert" hidden >
+			              <button type="button" class="close" aria-label="Close" {{action 'cerrarMsg'}}><span aria-hidden="true">&times;</span></button>
+			              <strong>{{msg.tipo}}</strong> {{msg.desc}}
+			            </div>
+			          </div>
+
+			          <div class="col-xs-4 pull-right">
+					<button {{action 'login'}} class="btn btn-primary">
+						Entrar
+					</button>
+					</div>
+
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<footer class="navbar-fixed-bottom">
+	<div class="container">
+    	<hr />
+  		<div class="row">
+    		<div class="col-lg-12">
+      			<div class="col-md-6">
+        			<ul class="list-group">
+        				<li class="list-group-item">
+							<span>{{fa-icon "info"}}</span>
+	        				<span>Sistelred, C.A. Rif-0000000-0</span>
+        				</li>
+        				<li class="list-group-item">
+				        	<span>{{fa-icon "phone"}}</span>
+				        	<span>0212-0000000 / 0212-2222222</span>
+				        </li>
+        				<li class="list-group-item">
+				        	<span>{{fa-icon "map-marker"}}</span>
+				        	<span>Guatire, Centro Comercial Daymar II, Piso 2 Oficina 15</span>
+        				</li>
+        			</ul>
+      			</div>
+      			<div class="col-md-6">
+        			<ul class="list-group">
+        				<li class="list-group-item">
+		        			<address>
+				  				<strong>Sistelred, C.A.</strong><br>
+				  				© 2013 Todos los derechos reservados<br>
+							</address>
+						</li>
+        			</ul>
+      			</div>
+    		</div>
+  		</div>
+  		<hr>
+	</div>
+</footer>
