@@ -1,16 +1,16 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-	currentName:'',
-	proyectos: [],
+	proyecto:{},
+	sin_etapas:'',
 	init(){
 		this._super();
 		if (!((window.localStorage.getItem('token')===undefined) || (window.localStorage.getItem('nombre1')===undefined))){
 			this.set('currentName', window.localStorage.getItem('nombre1') + " " +window.localStorage.getItem('apellido1'));
 
 			var method = "GET";
-			var url = window.serverUrl + '/tecnico/proyectos/' + window.localStorage.getItem('ci') + '/';
-		    this.getElements(method,url,this.setProyectos,this);
+			var url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/';
+		    this.getElements(method,url,this.setProyecto,this);
 		}
 	},
 	getElements(method,url,callback,context){
@@ -26,24 +26,20 @@ export default Ember.Controller.extend({
 		.done(function(response){ callback(response, context); })    
 		.fail(function(response) { console.log(response); }); 
 	},
-	setProyectos(proyectos,context){
+	setProyecto(proyecto,context){
 		var _this = context;
-
-		if (!Array.isArray(proyectos)){
-			var aux = [];
-			aux.push(proyectos);
-			proyectos = aux;
+		_this.set('proyecto',proyecto);
+		if (proyecto.etapas.length==0){
+			_this.set('sin_etapas',true);
+		}else{
+			_this.set('sin_etapas',false);
 		}
-		_this.set('proyectos',proyectos);
+		//console.log(proyecto);
 	},
 	actions:{
-		solicitudes:function(){
-			this.transitionToRoute('solicitudes');
-			//console.log("solicitude");
-		},
-		proyectos:function(){
-			this.transitionToRoute('proyectos');
-			//console.log("proyectos");
-		},
+		etapa:function(etapa){
+			window.localStorage.setItem('codigo_eta',etapa.codigo_eta);
+			this.transitionToRoute('etapa');
+		}
 	}
 });

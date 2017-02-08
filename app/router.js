@@ -13,6 +13,8 @@ Router.map(function() {
   this.route('tecnico');
   this.route('solicitudes');
   this.route('proyectos');
+  this.route('proyecto');
+  this.route('etapa');
 });
 
 export default Router;

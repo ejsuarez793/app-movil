@@ -1,0 +1,114 @@
+{{header-component}}
+<div class="well jumbo-color">
+	<div class="row">
+
+    	<div class="col-md-12 ">
+           	<div class="panel panel-default">
+	            <div class="panel-heading">
+	            	<h3 class="panel-title"> Detalle Proyecto</h3>
+	            </div>
+               	<div class="panel-body">
+               		<div class="row">
+
+		      			<div class="col-md-4">
+							<div class="form-group">
+								<label>Codigo </label><small class="form-text text-muted">* </small>
+								<div class="input-group">
+								  {{input type="text" class="form-control" value=proyecto.codigo disabled=true}}
+								  <span class="input-group-addon">{{fa-icon "folder-open-o"}}</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Nombre </label><small class="form-text text-muted">* </small>
+								<div class="input-group">
+								  {{input type="text" class="form-control" value=proyecto.nombre disabled=true}}
+								  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Estatus </label><small class="form-text text-muted">* </small>
+								<div class="input-group">
+								  {{input type="text" class="form-control" value=proyecto.estatus disabled=true}}
+								  <span class="input-group-addon">{{fa-icon "info"}}</span>
+								</div>
+							</div>
+						</div>
+
+							<div class="col-md-6">
+							<div class="form-group">
+								<label>Ubicación </label><small class="form-text text-muted">* </small>
+								<div class="input-group">
+								  {{input type="text" class="form-control" value=proyecto.ubicacion disabled=true}}
+								  <span class="input-group-addon">{{fa-icon "map-marker"}}</span>
+								</div>
+							</div>
+						</div>
+
+				
+
+						<div class="col-md-6">
+							<div class="form-group">
+								<label>Coordinador </label><small class="form-text text-muted">* </small>
+								<div class="input-group">
+								  {{input type="text" class="form-control" value=proyecto.nombre_coord disabled=true}}
+								  <span class="input-group-addon">{{fa-icon "id-card-o"}}</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Descripción </label><small class="form-text text-muted">* </small>
+								<div class="input-group">
+								  {{input type="text" class="form-control" value=proyecto.codigo disabled=true}}
+								  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+								</div>
+							</div>
+						</div>
+
+					
+
+
+               		</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 ">
+           	<div class="panel panel-default">
+	            <div class="panel-heading">
+	            	<h3 class="panel-title"> Etapas</h3>
+	            </div>
+               	<div class="panel-body">
+               		<div class="row">
+               			<div class="col-md-12  text-center">
+
+               			{{#if sin_etapas}}
+               				<p>Actualmente no hay etapas en este proyecto.</p>
+               			{{else}}
+               				<ul class="list-group">
+					          {{#each proyecto.etapas as |etapa|}}
+					          		<li class="list-group-item" {{action 'etapa' etapa}}>
+						          		{{etapa.nombre_eta}}
+						          		<span class="badge">{{etapa.letra_eta}}</span>
+					          		</li>
+					          {{/each}}
+					          </ul>  
+
+               			{{/if}}
+               			</div>
+               		</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
