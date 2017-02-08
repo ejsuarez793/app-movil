@@ -1,0 +1,248 @@
+{{header-component}}
+<div class="container-fluid">
+<div class="row">
+	<div class="col-lg-10">
+    <div id="alertMsg" class="alert alert-dismissible" role="alert" hidden>
+      <button type="button" class="close" {{action "cerrarMsg"}} aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{msg.tipo}}</strong> {{msg.desc}}
+    </div>
+  </div>
+</div>
+<div class="well jumbo-color">
+	<div class="row">
+    	<div class="col-md-12 ">
+           	<div class="panel panel-default">
+	            <div class="panel-heading">
+	            	<h3 class="panel-title"> Solicitudes</h3>
+	            </div>
+               	<div class="panel-body">
+               		<div class="row">
+               			<div class="col-md-12  text-center">
+
+               			{{#if sin_solicitudes}}
+               				<p>Actualmente no hay solicitudes para atender.</p>
+               			{{else}}
+               				<ul class="list-group">
+					          {{#each solicitudes as |solicitud|}}
+
+					          		<button class="btn btn-primary width-80" type="submit" {{action 'openModalSolicitud' solicitud}}>Solicitud Codigo {{solicitud.codigo}}</button>
+
+					          {{/each}}
+					          </ul>  
+               			{{/if}}
+               			</div>
+               		</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+
+
+<!-- Modal SOLICITUD-->
+<div class="modal fade " id="myModalSolicitud" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Solicitud</h4>
+      </div>
+      <div class="modal-body">
+          
+       <div>
+
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation" class="active"><a href="#detalle" aria-controls="detalle" role="tab" data-toggle="tab">Detalle de la Solicitud</a></li>
+		    <li role="presentation"><a href="#reporte_inicial" aria-controls="reporte_inicial" role="tab" data-toggle="tab">Llenar Reporte Inicial</a></li>
+		  </ul>
+
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="detalle">
+		    	
+		    	<div class="row">
+
+		    		<div class="col-md-4">
+						<div class="form-group">
+							<label>Código Solicitud</label>
+							{{input type="text" class="form-control" value=solicitud.codigo disabled=true}}
+						</div>
+					</div>
+
+	      			<div class="col-md-4">
+						<div class="form-group">
+							<label>Cliente</label>
+							{{input type="text" class="form-control" value=solicitud.nombre_cliente disabled=true}}
+						</div>
+					</div>
+
+					
+
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Fecha Solicitud</label>
+							{{input type="text" class="form-control" value=solicitud.f_sol disabled=true}}
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Disponibilidad de Atención</label>
+							{{input type="text" class="form-control" value=solicitud.disp disabled=true}}
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Ubicación</label>
+							{{input type="text" class="form-control" value=solicitud.ubicacion disabled=true}}
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Nombre Persona Contacto</label>
+							{{input type="text" class="form-control" value=solicitud.nombre_cc disabled=true}}
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Cargo Persona Contacto</label>
+							{{input type="text" class="form-control" value=solicitud.cargo_cc disabled=true}}
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Telefono Persona Contacto</label>
+							{{input type="text" class="form-control" value=solicitud.tlf_cc disabled=true}}
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label>Correo Persona Contacto</label>
+							{{input type="text" class="form-control" value=solicitud.correo_cc disabled=true}}
+						</div>
+					</div>
+				</div>
+
+		    </div>
+
+		    <div role="tabpanel" class="tab-pane" id="reporte_inicial">
+		    	<form id="formulario_ri">
+		    	<div class="row">
+		    	<br><br>
+		    	<div class="col-md-6">
+					<div class="form-group">
+						<label>Persona que atendió visita</label><small class="form-text text-muted"> </small>
+						<div class="input-group">
+						  {{input name="persona_a" id="persona_a" type="text" class="form-control" placeholder="Persona que atendió al técnico en su inspección" value=reporte_inicial.persona_a }}
+						  <span class="input-group-addon">{{fa-icon "user"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Cargo persona que atendió visita</label><small class="form-text text-muted"> </small>
+						<div class="input-group">
+						  {{input name="cargo_a" id="cargo_a" type="text" class="form-control" placeholder="Cargo de la persona que atendió al técnico en su inspección" value=reporte_inicial.cargo_a }}
+						  <span class="input-group-addon">{{fa-icon "user"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Descripción</label><small class="form-text text-muted"> </small>
+						<div class="input-group height-120">
+						  {{textarea name="desc" id="desc" type="text" class="height-120 form-control" placeholder="Descripción detallada del requerimiento del cliente" value=reporte_inicial.desc }}
+						  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Observaciones</label><small class="form-text text-muted"> </small>
+						<div class="input-group height-100">
+						  {{textarea name="observ" id="observ" type="text" class="form-control height-120" placeholder="Observaciones" value=reporte_inicial.observ }}
+						  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Riesgos</label><small class="form-text text-muted"> </small>
+						<div class="input-group height-100">
+						  {{textarea name="riesgos" id="riesgos" type="text" class="form-control height-120" placeholder="Posibles riesgos del requerimiento" value=reporte_inicial.riesgos }}
+						  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Complejidad:</label><small class="form-text text-muted"> </small>
+						<div class="input-group ">
+						  <select class="form-control" name="complejidad" id="select_complejidad" onchange={{action 'selectComplejidad'}}>
+						  	  <option disabled selected value="">Seleccione...</option>
+						      <option value="1">1</option>
+						      <option value="2">2</option>
+						      <option value="3">3</option>
+						      <option value="4">4</option>
+						      <option value="5">5</option>
+						      <option value="6">6</option>
+						      <option value="7">7</option>
+						      <option value="8">8</option>
+						      <option value="9">9</option>
+						      <option value="10">10</option>
+						    </select>
+						  <span class="input-group-addon">{{fa-icon "sort-numeric-asc"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Factibilidad:</label><small class="form-text text-muted"> </small>
+						<div class="input-group ">
+						  <select class="form-control" name="factibilidad" id="select_factibilidad" onchange={{action 'selectFactibilidad'}}>
+						  	  <option disabled selected value="">Seleccione...</option>
+						      <option value="1">1</option>
+						      <option value="2">2</option>
+						      <option value="3">3</option>
+						      <option value="4">4</option>
+						      <option value="5">5</option>
+						      <option value="6">6</option>
+						      <option value="7">7</option>
+						      <option value="8">8</option>
+						      <option value="9">9</option>
+						      <option value="10">10</option>
+						    </select>
+						  <span class="input-group-addon">{{fa-icon "sort-numeric-asc"}}</span>
+						</div>
+					</div>
+				</div>
+				</div>
+				</form>
+		    </div>
+		  </div>
+
+		</div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarReporteInicial' }} class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

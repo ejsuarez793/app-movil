@@ -50,13 +50,21 @@ export default Ember.Controller.extend({
             context:this,
             url: url,
             headers:{
-                Authorization: "Token "+ Cookies.get('token'),
+                Authorization: "Token "+ window.localStorage.getItem('token'),
             },
             contentType: "application/json; charset=utf-8",
             dataType: "json",
         })    
         .done(function(response) { 
-            Cookies.set("current", response);
+            //Cookies.set("current", response);
+            //console.log(response);
+            window.localStorage.setItem('nombre1',response.nombre1);
+            window.localStorage.setItem('nombre2',response.nombre2);
+            window.localStorage.setItem('apellido1',response.apellido1);
+            window.localStorage.setItem('apellido2',response.apellido2);
+            window.localStorage.setItem('cargo',response.cargo);
+            window.localStorage.setItem('ci',response.ci);
+            window.localStorage.setItem('usuario',response.usuario);
             if(response.cargo !== 't'){
                 this.msgRespuesta("Error: ","El usuario no es un técnico",-1,context);
             }else{
@@ -79,7 +87,8 @@ export default Ember.Controller.extend({
         .done(function(response) {
             //console.log(response);
             var token = response.token;
-            Cookies.set("token", token);
+           // Cookies.set("token", token);
+            window.localStorage.setItem('token',token);
             context.getCurrent();
         })    
         .fail(function(response) { 

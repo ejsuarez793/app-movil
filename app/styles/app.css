@@ -1,0 +1,18 @@
+.jumbo-color{
+  background-color: #B0C4DE;
+  /*gainsboro*/
+}
+
+.width-80 { width: 80% !important; }
+
+ul {
+  list-style-type: none;
+}
+
+textarea.form-control.height-120 {
+  height: 120px;
+}
+
+.height-120{
+  height: 120px; 
+}

@@ -11,6 +11,8 @@ Router.map(function() {
   this.route('index', { path: '/' }, function() {});
   this.route('login');
   this.route('tecnico');
+  this.route('solicitudes');
+  this.route('proyectos');
 });
 
 export default Router;
