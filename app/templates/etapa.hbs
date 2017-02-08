@@ -1,4 +1,12 @@
 {{header-component}}
+<div class="row">
+	<div class="col-lg-12">
+    <div id="alertMsg" class="alert alert-dismissible" role="alert" hidden>
+      <button type="button" class="close" {{action "cerrarMsg"}} aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>{{msg.tipo}}</strong> {{msg.desc}}
+    </div>
+  </div>
+</div>
 <div class="well jumbo-color">
 	<div class="row">
 
@@ -58,10 +66,76 @@
 	            </div>
                	<div class="panel-body">
                		<div class="row">
-               			<div class="col-md-12  text-center">
 
-               			holis
+               			<div class="col-md-12  text-center">
+				           	<div class="panel panel-default">
+				               	<div class="panel-body">
+				               		<div class="row">
+				               			<div class="col-md-12  text-center">
+				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalReporteDetalle'}}>
+				               				<span class="pull-left" >{{fa-icon "clipboard"}}</span> 
+				               				Llenar Reporte Detalle
+				               				</button>
+				               				
+				               			</div>
+				               		</div>
+				                </div>
+				            </div>
                			</div>
+
+
+               			<div class="col-md-12  text-center">
+				           	<div class="panel panel-default">
+				               	<div class="panel-body">
+				               		<div class="row">
+				               			<div class="col-md-12  text-center">
+				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalActividades'}}>
+				               				<span class="pull-left" >{{fa-icon "list-ol"}}</span> 
+				               				Actividades
+				               				</button>
+				               				
+				               			</div>
+				               		</div>
+				                </div>
+				            </div>
+               			</div>
+
+
+
+               			<div class="col-md-12  text-center">
+				           	<div class="panel panel-default">
+				               	<div class="panel-body">
+				               		<div class="row">
+				               			<div class="col-md-12  text-center">
+				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalSolicitudMateriales'}}>
+				               				<span class="pull-left" >{{fa-icon "file-text-o"}}</span> 
+				               				Solicitar Materiales
+				               				</button>
+				               				
+				               			</div>
+				               		</div>
+				                </div>
+				            </div>
+               			</div>
+
+
+
+               			<div class="col-md-12  text-center">
+				           	<div class="panel panel-default">
+				               	<div class="panel-body">
+				               		<div class="row">
+				               			<div class="col-md-12  text-center">
+				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalReporte'}}>
+				               				<span class="pull-left" >{{fa-icon "pencil-square-o"}}</span> 
+				               				Reportar
+				               				</button>
+				               				
+				               			</div>
+				               		</div>
+				                </div>
+				            </div>
+               			</div>
+
                		</div>
                 </div>
             </div>
@@ -69,4 +143,153 @@
 
 
     </div>
+</div>
+
+
+
+
+
+
+<!-- Modal REPORTE DETALLE-->
+<div class="modal fade " id="myModalReporteDetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Reporte Detalle</h4>
+      </div>
+      <div class="modal-body">
+          
+       <div>
+		    <form id="formulario_rd">
+		    	<div class="row">
+		    	<br><br>
+		    	<div class="col-md-6">
+					<div class="form-group">
+						<label>Persona que atendió visita</label><small class="form-text text-muted"> </small>
+						<div class="input-group">
+						  {{input name="persona_a" id="persona_a" type="text" class="form-control" placeholder="Persona que atendió al técnico en el reporte de detalle" value=reporte_detalle.persona_a }}
+						  <span class="input-group-addon">{{fa-icon "user"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Cargo persona que atendió visita</label><small class="form-text text-muted"> </small>
+						<div class="input-group">
+						  {{input name="cargo_a" id="cargo_a" type="text" class="form-control" placeholder="Cargo de la persona que atendió al técnico en el reporte de detalle" value=reporte_detalle.cargo_a }}
+						  <span class="input-group-addon">{{fa-icon "user"}}</span>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Observaciones</label><small class="form-text text-muted"> </small>
+						<div class="input-group height-100">
+						  {{textarea name="observ" id="observ" type="text" class="form-control height-120" placeholder="Observaciones" value=reporte_detalle.observ }}
+						  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-12">
+					<div class="form-group">
+						<label>Vicios Ocultos</label><small class="form-text text-muted"> </small>
+						<div class="input-group height-100">
+						  {{textarea name="vicios_ocu" id="vicios_ocu" type="text" class="form-control height-120" placeholder="Vicios ocultos de la etapa" value=reporte_detalle.vicios_ocu }}
+						  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+						</div>
+					</div>
+				</div>
+				</div>
+			</form>
+		 
+		  </div>
+
+		</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarReporteDetalle' }} class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- Modal Actividades-->
+<div class="modal fade " id="myModalActividades" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="myModalLabel">Actividades</h4>
+		</div>
+    	<div class="modal-body">
+          
+      		<div class="row">
+      			<div class="col-md-12">
+      				<table class="table">
+                        <thead>
+                          <tr>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each etapa.servicios as |servicio|}}
+                          <tr>
+                              <td>{{servicio.codigo}}</td>
+                              <td>{{servicio.desc}}</td>
+                              <td>{{servicio.cantidad}}</td>
+                          </tr>
+                          {{/each}}
+                        </tbody>
+                    </table>
+      			</div>
+
+
+
+      			<div class="col-md-12">
+      				<table class="table">
+                        <thead>
+                          <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Serial</th>
+                            <th>Descripción</th>
+                            <th>Cantidad</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each etapa.materiales as |material|}}
+                          <tr>
+                              <td>{{material.codigo}}</td>
+                              <td>{{material.nombre}}</td>
+                              <td>{{material.serial}}</td>
+                              <td>{{material.desc}}</td>
+                              <td>{{material.cantidad}}</td>
+                          </tr>
+                          {{/each}}
+                        </tbody>
+                    </table>
+      			</div>
+      		</div>
+
+		</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarActividades' }} class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
 </div>

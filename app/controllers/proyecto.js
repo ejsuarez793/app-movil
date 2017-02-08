@@ -40,6 +40,6 @@ export default Ember.Controller.extend({
 		etapa:function(etapa){
 			window.localStorage.setItem('codigo_eta',etapa.codigo_eta);
 			this.transitionToRoute('etapa');
-		}
+		},
 	}
 });
