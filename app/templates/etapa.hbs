@@ -232,9 +232,25 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			<h4 class="modal-title" id="myModalLabel">Actividades</h4>
 		</div>
-    	<div class="modal-body">
+    	<div class="modal-body" id="modalBodyActividades">
           
-      		<div class="row">
+          	<ul class="list-group">
+			  	{{#each etapa.actividades as |actividad|}}
+			  	<li class="list-group-item">
+			  		{{#if actividad.completada}}
+				    	<span class="badge">Completada</span>
+				    {{else}}
+				    
+				    	<div class="pull-right">
+				    		<span> Completar &nbsp;</span><input type="checkbox" value="{{actividad.codigo}}">
+				    	</div>
+				    	
+				    {{/if}}
+				    <strong>{{actividad.nro}})</strong> {{actividad.desc}}
+				</li>
+				{{/each}}
+			</ul>
+      		<!--<div class="row">
       			<div class="col-md-12">
       				<table class="table">
                         <thead>
@@ -282,7 +298,7 @@
                         </tbody>
                     </table>
       			</div>
-      		</div>
+      		</div>-->
 
 		</div>
 

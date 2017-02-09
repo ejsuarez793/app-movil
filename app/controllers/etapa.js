@@ -134,13 +134,39 @@ export default Ember.Controller.extend({
 		data.completado = true;
 		data.nombre_t = window.localStorage.getItem('nombre1') + " " + window.localStorage.getItem('apellido1');
 		//console.log(data);
-		url = window.serverUrl + '/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' + window.localStorage.getItem('codigo_eta') +'/reporteDetalle/';
+		url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' + window.localStorage.getItem('codigo_eta') +'/reporteDetalle/';
 		this.validarReporteDetalle();
         if ($("#formulario_rd").valid()){
         	this.llamadaServidor(method,url,data,this.msgRespuesta,this);
         	$("#myModalReporteDetalle").modal('hide');
         }
 		
+	},
+	guardarActividades(){
+		var method = "PATCH";
+		var url;
+		var data = {};
+		data = [];
+		var checkbox = "#modalBodyActividades input:checked";
+		var actividades = this.get('etapa.actividades').toArray();
+
+		$(checkbox).each(function() {
+		    //console.log($(this).val());
+		    var _this = this;
+		    $.each(actividades,function(i,actividad){
+		    	if (actividad.codigo === parseInt($(_this).val() )) {
+		    		data.push($.extend(true,{},actividad));
+		    	}
+		    });
+		});
+		url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' + window.localStorage.getItem('codigo_eta') +'/actividad/';
+        if (data.length > 0){
+        	this.llamadaServidor(method,url,data,this.msgRespuesta,this);
+        }else{
+        	this.msgRespuesta("Error ","No seleccionaste ninguna actividad para completar.",-1,this);
+        }
+        $("#myModalActividades").modal('hide');
+        console.log(data);
 	},
 	cerrarMsg(){
 		$("#alertMsg").hide();
@@ -154,11 +180,9 @@ export default Ember.Controller.extend({
 			this.transitionToRoute('etapa');
 		},
 		openModalReporteDetalle(){
-			console.log("implementar rd");
 			$("#myModalReporteDetalle").modal('show');
 		},
 		openModalActividades(){
-			console.log("implementar act");
 			$("#myModalActividades").modal('show');
 		},
 		openModalSolicitudMateriales(){
@@ -169,6 +193,9 @@ export default Ember.Controller.extend({
 		},
 		guardarReporteDetalle(){
 			this.guardarReporteDetalle();
+		},
+		guardarActividades(){
+			this.guardarActividades();
 		}
 	}
 });

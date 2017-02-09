@@ -166,7 +166,7 @@ export default Ember.Controller.extend({
 		data.completado = true;
 		data.nombre_t = window.localStorage.getItem('nombre1') + " " + window.localStorage.getItem('apellido1');
 
-		url = window.serverUrl + '/proyecto/' + this.get('solicitud.codigo_pro') + '/reporteInicial/';
+		url = window.serverUrl + '/tecnico/proyecto/' + this.get('solicitud.codigo_pro') + '/reporteInicial/';
 		this.validarReporteInicial();
         if ($("#formulario_ri").valid()){
         	this.llamadaServidor(method,url,data,this.msgRespuesta,this);
