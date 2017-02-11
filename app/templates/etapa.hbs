@@ -250,61 +250,284 @@
 				</li>
 				{{/each}}
 			</ul>
-      		<!--<div class="row">
-      			<div class="col-md-12">
-      				<table class="table">
-                        <thead>
-                          <tr>
-                            <th>Código</th>
-                            <th>Descripción</th>
-                            <th>Cantidad</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {{#each etapa.servicios as |servicio|}}
-                          <tr>
-                              <td>{{servicio.codigo}}</td>
-                              <td>{{servicio.desc}}</td>
-                              <td>{{servicio.cantidad}}</td>
-                          </tr>
-                          {{/each}}
-                        </tbody>
-                    </table>
-      			</div>
-
-
-
-      			<div class="col-md-12">
-      				<table class="table">
-                        <thead>
-                          <tr>
-                            <th>Código</th>
-                            <th>Nombre</th>
-                            <th>Serial</th>
-                            <th>Descripción</th>
-                            <th>Cantidad</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {{#each etapa.materiales as |material|}}
-                          <tr>
-                              <td>{{material.codigo}}</td>
-                              <td>{{material.nombre}}</td>
-                              <td>{{material.serial}}</td>
-                              <td>{{material.desc}}</td>
-                              <td>{{material.cantidad}}</td>
-                          </tr>
-                          {{/each}}
-                        </tbody>
-                    </table>
-      			</div>
-      		</div>-->
 
 		</div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         <button  {{action 'guardarActividades' }} class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal SOLICITUD MATERIALES-->
+<div class="modal fade " id="myModalSolicitudMateriales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        	<h4 class="modal-title" id="myModalLabel">Solicitud Materiales</h4>
+      	</div>
+      	<div class="modal-body">
+
+
+	      	<div class="row">
+	      		<div class="col-md-12">
+		          	<table class="table">
+			            <thead>
+			              <tr>
+			                <th>Código</th>
+			                <th>Nombre</th>
+			                <th>Serial</th>
+			                <th>Descripción</th>
+			                <th>Cantidad</th>
+			                <th>Seleccion</th>
+			              </tr>
+			            </thead>
+			            <tbody>
+			              {{#each disponibles as |material|}}
+			              <tr>
+			              	{{#if material.mostrar_seleccion}}
+			                  <td>{{material.codigo}}</td>
+			                  <td>{{material.nombre}}</td>
+			                  <td>{{material.serial}}</td>
+			                  <td>{{material.desc}}</td>
+			                  <td>{{material.cantidad_seleccion}}</td>
+			                  <td><input type="checkbox" value={{material.codigo}}></td>
+			                {{/if}}
+			              </tr>
+			              {{/each}}
+			            </tbody>
+		        	</table>
+	        	</div>
+	        </div>
+
+	        <div class="row">
+	        	<div class="col-md-12">
+	        		<button type="button" class="btn btn-default" {{action 'eliminarSeleccion'}} >Eliminar Seleccionados</button>
+	    
+	        		<button type="button" class="btn btn-primary" {{action 'openModalAgregar'}} >Agregar Material</button>
+	        	</div>
+	        </div>
+
+		</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarSolicitudMateriales' }} class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal SOLICITUD MATERIALES-->
+<div class="modal fade " id="myModalReportes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        	<h4 class="modal-title" id="myModalLabel">Reporte</h4>
+      	</div>
+      	<div class="modal-body">
+      		<ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#detalle" aria-controls="detalle" role="tab" data-toggle="tab">Detalle</a></li>
+			    <li role="presentation"><a href="#servicios" aria-controls="servicios" role="tab" data-toggle="tab">Servicios</a></li>
+			</ul>
+
+
+			<div class="tab-content">
+
+
+
+
+			    <div role="tabpanel" class="tab-pane active" id="detalle">
+
+			    	<form id="formulario_rep">
+				    	<div class="row">
+				    	<br>
+
+
+				    	<div class="col-md-12">
+							<div class="form-group">
+								<label>Tipo:</label><small class="form-text text-muted"> </small>
+								<div class="input-group ">
+								  <select class="form-control" name="tipo" id="select_tipo_reporte" onchange={{action 'selectReporte'}}>
+								  	  <option disabled selected value="">Seleccione...</option>
+								      <option value="Avance">Avance</option>
+								      <option value="Problema">Problema</option>
+								      <option value="Otro">Otro</option>
+								    </select>
+								  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12">
+							<div class="form-group">
+								<label>Observaciones</label><small class="form-text text-muted"> </small>
+								<div class="input-group height-100">
+								  {{textarea name="observ" type="text" class="form-control height-120" placeholder="Observaciones" value=reporte.observ }}
+								  <span class="input-group-addon">{{fa-icon "bars"}}</span>
+								</div>
+							</div>
+						</div>
+
+
+						</div>
+					</form>
+
+			    </div>
+
+
+
+			    <div role="tabpanel" class="tab-pane" id="servicios">
+			    	
+			    	<div class="row">
+			      		<div class="col-md-12">
+				          	<table class="table">
+					            <thead>
+					              <tr>
+					                <th>Código</th>
+					                <th>Descripción</th>
+					                <th>Cantidad</th>
+					                <th>Seleccion</th>
+					              </tr>
+					            </thead>
+					            <tbody>
+					              {{#each disponibles as |servicio|}}
+					              <tr>
+					              	{{#if servicio.mostrar_seleccion}}
+					                  <td>{{servicio.codigo}}</td>
+					                  <td>{{servicio.desc}}</td>
+					                  <td>{{servicio.cantidad_seleccion}}</td>
+					                  <td><input type="checkbox" value={{servicio.codigo}}></td>
+					                {{/if}}
+					              </tr>
+					              {{/each}}
+					            </tbody>
+				        	</table>
+			        	</div>
+			        </div>
+			        <div class="row">
+			        	<div class="col-md-12">
+			        		<button type="button" class="btn btn-default" {{action 'eliminarSeleccion'}} >Eliminar Seleccionados</button>
+			    
+			        		<button type="button" class="btn btn-primary" {{action 'openModalAgregar'}} >Agregar Servicio</button>
+			        	</div>
+			        </div>
+
+			    </div>
+
+
+
+
+    		</div>
+	      	
+
+		</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarReporte' }} class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal AGREGAR ELEMENTOS-->
+<div class="modal fade " id="myModalAgregar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      	<div class="modal-header">
+        	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        	<h4 class="modal-title" id="myModalLabel">Agregar Elemento</h4>
+      	</div>
+      	<div class="modal-body">
+
+
+	      	<div class="row">
+	      		<div class="col-md-12">
+	      			{{#if material}}
+		          	<table class="table">
+			            <thead>
+			              <tr>
+			                <th>Código</th>
+			                <th>Nombre</th>
+			                <th>Serial</th>
+			                <th>Descripción</th>
+			                <th>Cantidad Disponible</th>
+			                <th>Cantidad a Solicitar</th>
+			                <th>Seleccion</th>
+			              </tr>
+			            </thead>
+			            <tbody>
+			              {{#each disponibles as |material|}}
+			              <tr>
+			              	{{#if material.mostrar_sin_seleccion}}
+			                  <td>{{material.codigo}}</td>
+			                  <td>{{material.nombre}}</td>
+			                  <td>{{material.serial}}</td>
+			                  <td>{{material.desc}}</td>
+			                  <td>{{material.cantidad_sin_seleccion}}</td>
+			                  <td>
+			                  	<input type="number" class="form-control input-sm" id="cant_sel_{{material.codigo}}" min="0" max="{{material.cantidad}}">
+
+			                  </td>
+			                  <td><input type="checkbox" value={{material.codigo}}></td>
+			                  {{/if}}
+			              </tr>
+			              {{/each}}
+			            </tbody>
+		        	</table>
+		        	{{/if}}
+
+
+
+		        	{{#if servicio}}
+		          	<table class="table">
+			            <thead>
+			              <tr>
+			                <th>Código</th>
+			                <th>Descripción</th>
+			                <th>Cantidad Disponible</th>
+			                <th>Cantidad a Solicitar</th>
+			                <th>Seleccion</th>
+			              </tr>
+			            </thead>
+			            <tbody>
+			              {{#each disponibles as |servicio|}}
+			              <tr>
+			              	{{#if servicio.mostrar_sin_seleccion}}
+			                  <td>{{servicio.codigo}}</td>
+			                  <td>{{servicio.desc}}</td>
+			                  <td>{{servicio.cantidad_sin_seleccion}}</td>
+			                  <td>
+			                  	<input type="number" class="form-control input-sm" id="cant_sel_{{servicio.codigo}}" min="0" max="{{servicio.cantidad}}">
+
+			                  </td>
+			                  <td><input type="checkbox" value={{servicio.codigo}}></td>
+			                  {{/if}}
+			              </tr>
+			              {{/each}}
+			            </tbody>
+		        	</table>
+		        	{{/if}}
+	        	</div>
+	        </div>
+
+		</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'agregarSeleccion' }} class="btn btn-primary">Guardar</button>
       </div>
     </div>
   </div>

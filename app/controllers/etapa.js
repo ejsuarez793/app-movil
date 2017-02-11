@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
 	etapa:{},
 	msg:{},
 	reporte_detalle:{},
+	reporte:{},
 	init(){
 		this._super();
 		if (!((window.localStorage.getItem('token')===undefined) || (window.localStorage.getItem('nombre1')===undefined))){
@@ -126,6 +127,45 @@ export default Ember.Controller.extend({
 			}
 		});
 	},
+	validarReporte(){
+		$.validator.addMethod("maxlength", function (value, element, len) {
+				return value === "" || value.length <= len;
+		});
+
+		$("#formulario_rep").validate({
+			rules:{
+				tipo:{
+					required:true,
+				},
+				observ:{
+					required:true,
+					maxlength:300,
+				},
+
+			},
+			messages:{
+				tipo:{
+					required:'Este campo es requerido.',
+				},
+				observ:{
+					required:'Este campo es requerido.',
+					maxlength:'Longitud máxima de 300 caracteres.',
+				},
+			},
+			errorElement: 'small',
+			errorClass: 'help-block',
+			errorPlacement: function(error, element) {
+				error.insertAfter(element.parent());
+			},
+			highlight: function(element) {
+				$(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+			},
+			success: function(element) {
+				$(element).addClass('valid').closest('.form-group').removeClass('has-error').addClass('has-success');
+			}
+		});
+	},
+
 	guardarReporteDetalle(){
 		var method = "POST";
 		var url;
@@ -186,10 +226,155 @@ export default Ember.Controller.extend({
 			$("#myModalActividades").modal('show');
 		},
 		openModalSolicitudMateriales(){
-			console.log("implementar solicitud");
+
+			$("#myModalSolicitudMateriales").modal('show');
+			var elementos = $.extend(true,[],this.get('etapa.materiales').toArray());
+
+			// ahora cada elemento lo inicializamos para no ser mostrado como seleccionado inicialmente
+			//sino que aparece sin seleccion
+			$.each(elementos,function(i,elemento){
+				elemento['cantidad_seleccion'] = 0;
+				elemento['cantidad_sin_seleccion'] = elemento['cantidad'];
+				elemento['mostrar_seleccion'] = false;
+				elemento['mostrar_sin_seleccion'] = true;
+			});
+			this.set('material',true);
+			this.set('servicio',false);
+			this.set('disponibles',elementos);
+		},
+		guardarSolicitudMateriales(){
+			var method = "POST";
+			var url;
+			var data = {};
+			var disponibles = this.get('disponibles').toArray();
+			var materiales = [];
+			var aux={};
+			data.ci_tecnico = window.localStorage.getItem('ci');
+			//data.codigo_eta = window.localStorage.getItem('codigo_eta');
+			data.materiales = [];
+
+			$.each(disponibles,function(i,disponible){
+				if (disponible.mostrar_seleccion){
+					aux.codigo = disponible.codigo;
+					aux.cantidad = disponible.cantidad_seleccion;
+					data.materiales.push($.extend(true,{},aux));
+				}
+			});
+			//console.log(data);
+			url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' + window.localStorage.getItem('codigo_eta') +'/solicitud/';
+	        if (data.materiales.length > 0){
+	        	this.llamadaServidor(method,url,data,this.msgRespuesta,this);
+	        	
+	        }else{
+	        	this.msgRespuesta("Error ","No seleccionaste ningún material",-1,this);
+	        }
+	        $("#myModalSolicitudMateriales").modal('hide');
+		},
+		agregarSeleccion(){
+			var checkbox = "#myModalAgregar input:checked";
+			var disponibles = $.extend(true,[],this.get('disponibles').toArray());
+			var input_cantidad = "#cant_sel_";
+
+			//por cada elemento que esta seleccionado
+			$(checkbox).each(function() {
+		    	var codigo = $(this).val();
+				$.each(disponibles,function(i,disponible){
+					if(codigo === disponible.codigo){ //si el codigo del checkbox es igual al del elemento
+						var cantidad = parseInt($(input_cantidad+codigo).val()); //agarramos la cantidad seleccionada
+						if (!isNaN(cantidad) && cantidad <= disponible.cantidad_sin_seleccion){//si es un numero y es menor que la cantidad disponible
+							disponible.cantidad_seleccion += cantidad;
+							disponible.cantidad_sin_seleccion -= cantidad;
+							if (disponible.cantidad_sin_seleccion === 0 ){
+								disponible.mostrar_sin_seleccion = false;
+							}
+							if(disponible.cantidad_seleccion > 0 ){
+								disponible.mostrar_seleccion = true;
+							}
+						}
+					}
+				});
+			});
+
+
+			this.set('disponibles',disponibles);
+			$('#myModalAgregar').modal('hide');
+		},
+		eliminarSeleccion(){
+			var checkbox;
+			var disponibles = $.extend(true,[],this.get('disponibles').toArray());
+			var codigo;
+
+			if (this.get('material')){
+				checkbox = "#myModalSolicitudMateriales input:checked";
+			}else if (this.get('servicio')){
+				checkbox = "#myModalReportes input:checked";
+			}
+
+			$(checkbox).each(function() {
+				codigo = $(this).val();
+				$.each(disponibles,function(i,disponible){
+					if(codigo === disponible.codigo){
+						disponible.cantidad_seleccion = 0 ;
+						disponible.cantidad_sin_seleccion = disponible.cantidad;
+						disponible.mostrar_seleccion = false;
+						disponible.mostrar_sin_seleccion = true;
+					}
+				});
+			});
+			this.set('disponibles',disponibles);
 		},
 		openModalReporte(){
-			console.log("implementar reporte");
+			$("#myModalReportes").modal('show');
+			var elementos = $.extend(true,[],this.get('etapa.servicios').toArray());
+
+			// ahora cada elemento lo inicializamos para no ser mostrado como seleccionado inicialmente
+			//sino que aparece sin seleccion
+			$.each(elementos,function(i,elemento){
+				elemento['cantidad_seleccion'] = 0;
+				elemento['cantidad_sin_seleccion'] = elemento['cantidad'];
+				elemento['mostrar_seleccion'] = false;
+				elemento['mostrar_sin_seleccion'] = true;
+			});
+			this.set('material',false);
+			this.set('servicio',true);
+			this.set('disponibles',elementos);
+		},
+		guardarReporte(){
+			var method = "POST";
+			var url;
+			var data = {};
+			var disponibles = this.get('disponibles').toArray();
+			var aux={};
+			data.nombre_t = window.localStorage.getItem('nombre1') + " " + window.localStorage.getItem('apellido1');
+			data.tipo = this.get('reporte.tipo');
+			data.observ = this.get('reporte.observ');
+			data.servicios = [];
+
+			$.each(disponibles,function(i,disponible){
+				if (disponible.mostrar_seleccion){
+					aux.codigo = disponible.codigo;
+					aux.cantidad = disponible.cantidad_seleccion;
+					data.servicios.push($.extend(true,{},aux));
+				}
+			});
+			//console.log(data);
+			url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' + window.localStorage.getItem('codigo_eta') +'/reporte/';
+			this.validarReporte();
+	        if ($("#formulario_rep").valid()){
+	        	if (data.tipo !== "Avance" && data.servicios.length > 0){
+	        		this.msgRespuesta("Error ","Solo los reportes de tipo 'avance' pueden contener servicios.",-1,this);
+	        	}else{
+	        		this.llamadaServidor(method,url,data,this.msgRespuesta,this);
+	        	}
+	        	$("#myModalReportes").modal('hide');
+	        }
+	        
+		},
+		selectReporte(){
+			this.set('reporte.tipo',$("#select_tipo_reporte").val());
+		},
+		openModalAgregar(){
+			$("#myModalAgregar").modal('show');
 		},
 		guardarReporteDetalle(){
 			this.guardarReporteDetalle();

@@ -16,3 +16,4 @@ textarea.form-control.height-120 {
 .height-120{
   height: 120px; 
 }
+.modal { overflow: auto !important; }
