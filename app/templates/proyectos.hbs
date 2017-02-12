@@ -25,8 +25,16 @@
                				<ul class="list-group">
 					          {{#each proyectos as |proyecto|}}
 					          		<li class="list-group-item" {{action 'proyecto' proyecto}}>
-						          		{{proyecto.nombre}} 
-						          		<span class="badge">{{proyecto.codigo}}</span>
+						          		<div class="row">
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-lg width-80" type="submit">
+                                <span class="pull-left" >{{fa-icon "folder-o"}}</span> 
+                                {{proyecto.nombre}}
+                                 <span class="badge">{{proyecto.codigo}}</span>
+                                </button>
+                                
+                            </div>
+                          </div>
 					          		</li>
 					          {{/each}}
 					          </ul>  

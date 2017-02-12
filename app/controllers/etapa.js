@@ -348,6 +348,7 @@ export default Ember.Controller.extend({
 			data.nombre_t = window.localStorage.getItem('nombre1') + " " + window.localStorage.getItem('apellido1');
 			data.tipo = this.get('reporte.tipo');
 			data.observ = this.get('reporte.observ');
+			data.codigo_eta = window.localStorage.getItem('codigo_eta');
 			data.servicios = [];
 
 			$.each(disponibles,function(i,disponible){
