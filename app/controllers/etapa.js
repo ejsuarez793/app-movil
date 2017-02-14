@@ -14,6 +14,14 @@ export default Ember.Controller.extend({
 			var url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' +window.localStorage.getItem('codigo_eta')+'/';
 		    this.getElements(method,url,this.setEtapa,this);
 		}
+
+		//agregamos esta funcion, para que cada vez que le demos al boton back elimine las clases  que el modal agrega a la pagina
+		//y que no se quede el 'backdrop' para siempre.
+		$(window).on('popstate', function() {
+		  $('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
+		});
+
 	},
 	getElements(method,url,callback,context){
 		$.ajax({

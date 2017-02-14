@@ -72,9 +72,9 @@
 				               	<div class="panel-body">
 				               		<div class="row">
 				               			<div class="col-md-12  text-center">
-				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalReporteDetalle'}}>
+				               				<button class="btn btn-lg width-80 fsize-9" type="submit" {{action 'openModalReporteDetalle'}}>
 				               				<span class="pull-left" >{{fa-icon "clipboard"}}</span> 
-				               				Llenar Reporte Detalle
+				               				<span>Llenar Reporte Detalle</span>
 				               				</button>
 				               				
 				               			</div>
@@ -89,9 +89,9 @@
 				               	<div class="panel-body">
 				               		<div class="row">
 				               			<div class="col-md-12  text-center">
-				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalActividades'}}>
+				               				<button class="btn btn-lg width-80 fsize-9" type="submit" {{action 'openModalActividades'}}>
 				               				<span class="pull-left" >{{fa-icon "list-ol"}}</span> 
-				               				Actividades
+				               				<span>Actividades</span>
 				               				</button>
 				               				
 				               			</div>
@@ -107,9 +107,9 @@
 				               	<div class="panel-body">
 				               		<div class="row">
 				               			<div class="col-md-12  text-center">
-				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalSolicitudMateriales'}}>
+				               				<button class="btn btn-lg width-80 fsize-9" type="submit" {{action 'openModalSolicitudMateriales'}}>
 				               				<span class="pull-left" >{{fa-icon "file-text-o"}}</span> 
-				               				Solicitar Materiales
+				               				<span>Solicitar Materiales</span>
 				               				</button>
 				               				
 				               			</div>
@@ -125,9 +125,9 @@
 				               	<div class="panel-body">
 				               		<div class="row">
 				               			<div class="col-md-12  text-center">
-				               				<button class="btn btn-lg width-80" type="submit" {{action 'openModalReporte'}}>
+				               				<button class="btn btn-lg width-80 fsize-9" type="submit" {{action 'openModalReporte'}}>
 				               				<span class="pull-left" >{{fa-icon "pencil-square-o"}}</span> 
-				               				Reportar
+				               				<span>Reportar</span>
 				               				</button>
 				               				
 				               			</div>
@@ -271,39 +271,42 @@
         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         	<h4 class="modal-title" id="myModalLabel">Solicitud Materiales</h4>
       	</div>
-      	<div class="modal-body">
+      	<div class="modal-body fsize-9">
 
-
+      		
 	      	<div class="row">
 	      		<div class="col-md-12">
-		          	<table class="table">
-			            <thead>
-			              <tr>
-			                <th>Código</th>
-			                <th>Nombre</th>
-			                <th>Serial</th>
-			                <th>Descripción</th>
-			                <th>Cantidad</th>
-			                <th>Seleccion</th>
-			              </tr>
-			            </thead>
-			            <tbody>
-			              {{#each disponibles as |material|}}
-			              <tr>
-			              	{{#if material.mostrar_seleccion}}
-			                  <td>{{material.codigo}}</td>
-			                  <td>{{material.nombre}}</td>
-			                  <td>{{material.serial}}</td>
-			                  <td>{{material.desc}}</td>
-			                  <td>{{material.cantidad_seleccion}}</td>
-			                  <td><input type="checkbox" value={{material.codigo}}></td>
-			                {{/if}}
-			              </tr>
-			              {{/each}}
-			            </tbody>
-		        	</table>
+	      			<div class="table-responsive tresponsive">
+			          	<table class="table">
+				            <thead>
+				              <tr>
+				                <th>Código</th>
+				                <th>Nombre</th>
+				                <th>Serial</th>
+				                <th>Descripción</th>
+				                <th>Cantidad</th>
+				                <th>Seleccion</th>
+				              </tr>
+				            </thead>
+				            <tbody>
+				              {{#each disponibles as |material|}}
+				              <tr>
+				              	{{#if material.mostrar_seleccion}}
+				                  <td>{{material.codigo}}</td>
+				                  <td>{{material.nombre}}</td>
+				                  <td>{{material.serial}}</td>
+				                  <td>{{material.desc}}</td>
+				                  <td>{{material.cantidad_seleccion}}</td>
+				                  <td><input type="checkbox" value={{material.codigo}}></td>
+				                {{/if}}
+				              </tr>
+				              {{/each}}
+				            </tbody>
+			        	</table>
+		        	</div>
 	        	</div>
 	        </div>
+	     
 
 	        <div class="row">
 	        	<div class="col-md-12">
@@ -312,7 +315,7 @@
 	        		<button type="button" class="btn btn-primary" {{action 'openModalAgregar'}} >Agregar Material</button>
 	        	</div>
 	        </div>
-
+	       
 		</div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -324,7 +327,7 @@
 
 
 
-<!-- Modal SOLICITUD MATERIALES-->
+<!-- Modal REPORTES-->
 <div class="modal fade " id="myModalReportes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -332,7 +335,7 @@
         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         	<h4 class="modal-title" id="myModalLabel">Reporte</h4>
       	</div>
-      	<div class="modal-body">
+      	<div class="modal-body fsize-9">
       		<ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#detalle" aria-controls="detalle" role="tab" data-toggle="tab">Detalle</a></li>
 			    <li role="presentation"><a href="#servicios" aria-controls="servicios" role="tab" data-toggle="tab">Servicios</a></li>
@@ -388,6 +391,7 @@
 			    	
 			    	<div class="row">
 			      		<div class="col-md-12">
+			      		<div class="table-responsive">
 				          	<table class="table">
 					            <thead>
 					              <tr>
@@ -410,6 +414,7 @@
 					              {{/each}}
 					            </tbody>
 				        	</table>
+				        </div>
 			        	</div>
 			        </div>
 			        <div class="row">
@@ -451,12 +456,13 @@
         	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         	<h4 class="modal-title" id="myModalLabel">Agregar Elemento</h4>
       	</div>
-      	<div class="modal-body">
+      	<div class="modal-body fsize-9">
 
 
 	      	<div class="row">
 	      		<div class="col-md-12">
 	      			{{#if material}}
+	      			<div class="table-responsive">
 		          	<table class="table">
 			            <thead>
 			              <tr>
@@ -488,11 +494,13 @@
 			              {{/each}}
 			            </tbody>
 		        	</table>
+		        	</div>
 		        	{{/if}}
 
 
 
 		        	{{#if servicio}}
+		        	<div class="table-responsive">
 		          	<table class="table">
 			            <thead>
 			              <tr>
@@ -520,6 +528,7 @@
 			              {{/each}}
 			            </tbody>
 		        	</table>
+		        	</div>
 		        	{{/if}}
 	        	</div>
 	        </div>
