@@ -87,6 +87,34 @@
 	            	<h3 class="panel-title"> Etapas</h3>
 	            </div>
                	<div class="panel-body">
+
+               			{{#if sin_etapas}}
+               				<p>Actualmente no hay etapas en este proyecto.</p>
+               			{{else}}
+               				<ul class="list-group">
+					        	{{#each proyecto.etapas as |etapa|}}
+					          		<li class="list-group-item fsize-9" {{action 'etapa' etapa}}>
+						          		
+                               			<div class="row">
+                               				<div class="col-md-12 text-center">
+                                				<span >{{fa-icon "folder-open-o"}}</span> 
+                                			</div>
+			                                <div class="col-md-12 text-center">
+			                                	{{etapa.nombre_eta}}
+			                                </div>
+			                                <div class="col-md-12 text-center">
+			                                	<span class="badge fsize-9">{{etapa.letra_eta}}</span>
+			                                </div>
+                                		</div> 
+                                		 
+					          		</li>
+					          {{/each}}
+					          </ul>  
+
+               			{{/if}}
+
+
+               	<!--
                		<div class="row">
                			<div class="col-md-12  text-center">
 
@@ -112,6 +140,8 @@
                			{{/if}}
                			</div>
                		</div>
+				-->
+
                 </div>
             </div>
         </div>

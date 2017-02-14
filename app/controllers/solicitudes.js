@@ -13,6 +13,10 @@ export default Ember.Controller.extend({
 			var url = window.serverUrl + '/tecnico/solicitudes/' + window.localStorage.getItem('ci') + '/';
 		    this.getElements(method,url,this.setSolicitudes,this);
 		}
+		$(window).on('popstate', function() {
+		  $('body').removeClass('modal-open');
+			$('.modal-backdrop').remove();
+		});
 	},
 	getElements(method,url,callback,context){
 		$.ajax({

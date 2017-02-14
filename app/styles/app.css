@@ -5,7 +5,7 @@
 }
 
 
-.width-80 { width: 80% !important; }
+.width-80 { width: 100% !important; }
 
 ul {
   list-style-type: none;
@@ -25,3 +25,4 @@ textarea.form-control.height-120 {
 }
 
 .fsize-9{ font-size: 9px !important;}
+
