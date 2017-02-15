@@ -77,7 +77,7 @@ export default Ember.Controller.extend({
 			aux.push(solicitudes);
 			solicitudes = aux;
 		}
-		if (solicitudes.length==0){
+		if (solicitudes.length===0){
 			_this.set('sin_solicitudes',true);
 		}else{
 			_this.set('sin_solicitudes',false);
@@ -193,7 +193,7 @@ export default Ember.Controller.extend({
 			this.set('reporte_inicial.complejidad',$("#select_complejidad").val());
 		},
 		selectFactibilidad:function(){
-			this.set('reporte_inicial.factibilidad',$("#select_factibilidad").val())
+			this.set('reporte_inicial.factibilidad',$("#select_factibilidad").val());
 		},
 		guardarReporteInicial:function(){
 			this.guardarReporteInicial();

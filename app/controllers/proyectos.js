@@ -72,7 +72,7 @@ export default Ember.Controller.extend({
 			aux.push(proyectos);
 			proyectos = aux;
 		}
-		if (proyectos.length==0){
+		if (proyectos.length===0){
 			_this.set('sin_proyectos',true);
 		}else{
 			_this.set('sin_proyectos',false);

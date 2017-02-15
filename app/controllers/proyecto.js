@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
 	setProyecto(proyecto,context){
 		var _this = context;
 		_this.set('proyecto',proyecto);
-		if (proyecto.etapas.length==0){
+		if (proyecto.etapas.length===0){
 			_this.set('sin_etapas',true);
 		}else{
 			_this.set('sin_etapas',false);

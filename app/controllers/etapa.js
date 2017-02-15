@@ -255,7 +255,7 @@ export default Ember.Controller.extend({
 			var url;
 			var data = {};
 			var disponibles = this.get('disponibles').toArray();
-			var materiales = [];
+			//var materiales = [];
 			var aux={};
 			data.ci_tecnico = window.localStorage.getItem('ci');
 			//data.codigo_eta = window.localStorage.getItem('codigo_eta');

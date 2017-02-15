@@ -26,3 +26,7 @@ textarea.form-control.height-120 {
 
 .fsize-9{ font-size: 9px !important;}
 
+p{
+	word-wrap: break-word !important;
+	white-space: normal !important;
+}

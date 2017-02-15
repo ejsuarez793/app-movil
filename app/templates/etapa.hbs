@@ -254,8 +254,8 @@
 		</div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button  {{action 'guardarActividades' }} class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default fsize-9" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarActividades' }} class="btn btn-primary fsize-9">Guardar</button>
       </div>
     </div>
   </div>
@@ -276,16 +276,16 @@
       		
 	      	<div class="row">
 	      		<div class="col-md-12">
-	      			<div class="table-responsive tresponsive">
-			          	<table class="table">
+	      			<div class="table-responsive ">
+			          	<table class="table table-condensed table-bordered">
 				            <thead>
 				              <tr>
-				                <th>Código</th>
-				                <th>Nombre</th>
-				                <th>Serial</th>
-				                <th>Descripción</th>
-				                <th>Cantidad</th>
-				                <th>Seleccion</th>
+				                <th class="col-md-2">Código</th>
+				                <th class="col-md-4">Nombre</th>
+				                <th class="col-md-3">Serial</th>
+				                <!--<th>Descripción</th>-->
+				                <th class="col-md-2">Cantidad</th>
+				                <th class="col-md-1">Seleccion</th>
 				              </tr>
 				            </thead>
 				            <tbody>
@@ -295,7 +295,7 @@
 				                  <td>{{material.codigo}}</td>
 				                  <td>{{material.nombre}}</td>
 				                  <td>{{material.serial}}</td>
-				                  <td>{{material.desc}}</td>
+				                  <!--<td>{{material.desc}}</td>-->
 				                  <td>{{material.cantidad_seleccion}}</td>
 				                  <td><input type="checkbox" value={{material.codigo}}></td>
 				                {{/if}}
@@ -310,16 +310,16 @@
 
 	        <div class="row">
 	        	<div class="col-md-12">
-	        		<button type="button" class="btn btn-default" {{action 'eliminarSeleccion'}} >Eliminar Seleccionados</button>
+	        		<button type="button" class="btn btn-default fsize-9" {{action 'eliminarSeleccion'}} >Eliminar Seleccionados</button>
 	    
-	        		<button type="button" class="btn btn-primary" {{action 'openModalAgregar'}} >Agregar Material</button>
+	        		<button type="button" class="btn btn-primary fsize-9" {{action 'openModalAgregar'}} >Agregar Material</button>
 	        	</div>
 	        </div>
 	       
 		</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button  {{action 'guardarSolicitudMateriales' }} class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default fsize-9" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarSolicitudMateriales' }} class="btn btn-primary fsize-9">Guardar</button>
       </div>
     </div>
   </div>
@@ -392,23 +392,31 @@
 			    	<div class="row">
 			      		<div class="col-md-12">
 			      		<div class="table-responsive">
-				          	<table class="table">
+				          	<table class="table table-condensed table-bordered">
 					            <thead>
 					              <tr>
-					                <th>Código</th>
-					                <th>Descripción</th>
-					                <th>Cantidad</th>
-					                <th>Seleccion</th>
+					                <th>
+					                	<p>Código</p>
+					                </th>
+					                <th>
+					                	<p>Descripción</p>
+					                </th>
+					                <th>
+					                	<p>Cantidad</p>
+					                </th>
+					                <th>
+					                	<p>Seleccion</p>
+					                </th>
 					              </tr>
 					            </thead>
 					            <tbody>
 					              {{#each disponibles as |servicio|}}
 					              <tr>
 					              	{{#if servicio.mostrar_seleccion}}
-					                  <td>{{servicio.codigo}}</td>
-					                  <td>{{servicio.desc}}</td>
-					                  <td>{{servicio.cantidad_seleccion}}</td>
-					                  <td><input type="checkbox" value={{servicio.codigo}}></td>
+					                  <td><p>{{servicio.codigo}}</p></td>
+					                  <td><p>{{servicio.desc}}</p></td>
+					                  <td><p>{{servicio.cantidad_seleccion}}</p></td>
+					                  <td><p><input type="checkbox" value={{servicio.codigo}}></p></td>
 					                {{/if}}
 					              </tr>
 					              {{/each}}
@@ -419,9 +427,9 @@
 			        </div>
 			        <div class="row">
 			        	<div class="col-md-12">
-			        		<button type="button" class="btn btn-default" {{action 'eliminarSeleccion'}} >Eliminar Seleccionados</button>
+			        		<button type="button" class="btn btn-default fsize-9" {{action 'eliminarSeleccion'}} >Eliminar Seleccionados</button>
 			    
-			        		<button type="button" class="btn btn-primary" {{action 'openModalAgregar'}} >Agregar Servicio</button>
+			        		<button type="button" class="btn btn-primary fsize-9" {{action 'openModalAgregar'}} >Agregar Servicio</button>
 			        	</div>
 			        </div>
 
@@ -435,8 +443,8 @@
 
 		</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button  {{action 'guardarReporte' }} class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default fsize-9" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'guardarReporte' }} class="btn btn-primary fsize-9">Guardar</button>
       </div>
     </div>
   </div>
@@ -463,32 +471,57 @@
 	      		<div class="col-md-12">
 	      			{{#if material}}
 	      			<div class="table-responsive">
-		          	<table class="table">
+		          	<table class="table  table-condensed table-bordered">
 			            <thead>
 			              <tr>
-			                <th>Código</th>
-			                <th>Nombre</th>
-			                <th>Serial</th>
-			                <th>Descripción</th>
-			                <th>Cantidad Disponible</th>
-			                <th>Cantidad a Solicitar</th>
-			                <th>Seleccion</th>
+			                <th class="col-md-2">
+			                	<p>Código</p>
+			                </th>
+			                <th class="col-md-4">
+			                	<p>Nombre</p>
+			                </th>
+			                <th class="col-md-3">
+			                	<p>Serial</p>
+			                </th>
+			                <!--<th>Descripción</th>-->
+			                <th class="col-md-1">
+			                	<p>Cantidad Disponible</p>
+			                </th>
+			                <th class="col-md-1">
+			                	<p>Cantidad Selección</p>
+			                </th>
+			                <th class="col-md-1">
+			                	<p>Seleccion</p>
+			                </th>
 			              </tr>
 			            </thead>
 			            <tbody>
 			              {{#each disponibles as |material|}}
 			              <tr>
 			              	{{#if material.mostrar_sin_seleccion}}
-			                  <td>{{material.codigo}}</td>
-			                  <td>{{material.nombre}}</td>
-			                  <td>{{material.serial}}</td>
-			                  <td>{{material.desc}}</td>
-			                  <td>{{material.cantidad_sin_seleccion}}</td>
 			                  <td>
-			                  	<input type="number" class="form-control input-sm" id="cant_sel_{{material.codigo}}" min="0" max="{{material.cantidad}}">
-
+			                  	<p>{{material.codigo}}</p>
 			                  </td>
-			                  <td><input type="checkbox" value={{material.codigo}}></td>
+			                  <td>
+			                  	<p>{{material.nombre}}</p>
+			                  </td>
+			                  <td>
+			                  	<p>{{material.serial}}</p>
+			                  </td>
+			                  <!--<td>{{material.desc}}</td>-->
+			                  <td>
+			                  	<p>{{material.cantidad_sin_seleccion}}</p>
+			                  </td>
+			                  <td>
+			                	<p>
+			                  		<input type="number" class="form-control input-sm" id="cant_sel_{{material.codigo}}" min="0" max="{{material.cantidad}}">
+			                	</p>
+			                  </td>
+			                  <td>
+			                	<p>
+			                  		<input type="checkbox" value={{material.codigo}}>
+			                  	</p>
+			                  </td>
 			                  {{/if}}
 			              </tr>
 			              {{/each}}
@@ -501,28 +534,49 @@
 
 		        	{{#if servicio}}
 		        	<div class="table-responsive">
-		          	<table class="table">
+		          	<table class="table  table-condensed table-bordered">
 			            <thead>
 			              <tr>
-			                <th>Código</th>
-			                <th>Descripción</th>
-			                <th>Cantidad Disponible</th>
-			                <th>Cantidad a Solicitar</th>
-			                <th>Seleccion</th>
+			                <th>
+			                	<p>Código</p>
+			                </th>
+			                <th>
+			                	<p>Descripción</p>
+			                </th>
+			                <th>
+			                	<p>Cantidad Disponible</p>
+			                </th>
+			                <th>
+			                	<p>Cantidad Solicitud</p>
+			                </th>
+			                <th>
+			                	<p>Seleccion</p>
+			                </th>
 			              </tr>
 			            </thead>
 			            <tbody>
 			              {{#each disponibles as |servicio|}}
 			              <tr>
 			              	{{#if servicio.mostrar_sin_seleccion}}
-			                  <td>{{servicio.codigo}}</td>
-			                  <td>{{servicio.desc}}</td>
-			                  <td>{{servicio.cantidad_sin_seleccion}}</td>
 			                  <td>
-			                  	<input type="number" class="form-control input-sm" id="cant_sel_{{servicio.codigo}}" min="0" max="{{servicio.cantidad}}">
-
+			                  	<p>{{servicio.codigo}}</p>
 			                  </td>
-			                  <td><input type="checkbox" value={{servicio.codigo}}></td>
+			                  <td>
+			                  	<p>{{servicio.desc}}</p>
+			                  </td>
+			                  <td>
+			                  	<p>{{servicio.cantidad_sin_seleccion}}</p>
+			                  </td>
+			                  <td>
+			                  	<p>
+			                  	<input type="number" class="form-control input-sm" id="cant_sel_{{servicio.codigo}}" min="0" max="{{servicio.cantidad}}">
+			                  	</p>
+			                  </td>
+			                  <td>
+			                  	<p>
+			                  	<input type="checkbox" value={{servicio.codigo}}>
+			                  	</p>
+			                  </td>
 			                  {{/if}}
 			              </tr>
 			              {{/each}}
@@ -535,8 +589,8 @@
 
 		</div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <button  {{action 'agregarSeleccion' }} class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-default fsize-9" data-dismiss="modal">Cancelar</button>
+        <button  {{action 'agregarSeleccion' }} class="btn btn-primary fsize-9">Guardar</button>
       </div>
     </div>
   </div>

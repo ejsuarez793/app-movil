@@ -66,7 +66,7 @@ export default Ember.Controller.extend({
             window.localStorage.setItem('ci',response.ci);
             window.localStorage.setItem('usuario',response.usuario);
             if(response.cargo !== 't'){
-                this.msgRespuesta("Error: ","El usuario no es un técnico",-1,context);
+                this.msgRespuesta("Error: ","El usuario no es un técnico",-1,this);
             }else{
             	 this.transitionToRoute('/tecnico/');
             }
@@ -123,12 +123,12 @@ export default Ember.Controller.extend({
         },
     	login: function () {
             var data = {};
-            var token = '';
+            //var token = '';
             var username = this.get('username');
             var password = this.get('password');
             data.username = username;
             data.password = password;
-            var method = "POST"
+            var method = "POST";
             var url = window.serverUrl + /api-token-auth/;
             this.validarCampos();
             if ($("#loginForm").valid()){
