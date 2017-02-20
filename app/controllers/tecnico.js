@@ -8,12 +8,12 @@ export default Ember.Controller.extend({
 		if (!((window.localStorage.getItem('token')===undefined) || (window.localStorage.getItem('nombre1')===undefined))){
 			this.set('currentName', window.localStorage.getItem('nombre1') + " " +window.localStorage.getItem('apellido1'));
 
-			var method = "GET";
+			/*var method = "GET";
 			var url = window.serverUrl + '/tecnico/proyectos/' + window.localStorage.getItem('ci') + '/';
-		    this.getElements(method,url,this.setProyectos,this);
+		    this.getElements(method,url,this.setProyectos,this);*/
 		}
 	},
-	getElements(method,url,callback,context){
+	/*getElements(method,url,callback,context){
 		$.ajax({
 			type: method,
 			url: url,
@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
 			proyectos = aux;
 		}
 		_this.set('proyectos',proyectos);
-	},
+	},*/
 	actions:{
 		solicitudes:function(){
 			this.transitionToRoute('solicitudes');
