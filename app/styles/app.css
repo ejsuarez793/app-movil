@@ -1,10 +1,14 @@
 .jumbo-color{
   /*background-color: #B0C4DE;*/
   /*gainsboro*/
-   background-color: #535353
+   background-color: #535353;
 }
 
+.navbar {min-height:90px !important;}
 
+.navbar-brand{
+	width: 100%;
+}
 .width-80 { width: 100% !important; }
 
 ul {
