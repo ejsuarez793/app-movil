@@ -281,8 +281,8 @@
 				            <thead>
 				              <tr>
 				                <th class="col-md-2">Código</th>
-				                <th class="col-md-4">Nombre</th>
-				                <th class="col-md-3">Serial</th>
+				                <th class="col-md-4">Desc</th>
+				                <!--<th class="col-md-3">Serial</th>-->
 				                <!--<th>Descripción</th>-->
 				                <th class="col-md-2">Cantidad</th>
 				                <th class="col-md-1">Seleccion</th>
@@ -293,8 +293,8 @@
 				              <tr>
 				              	{{#if material.mostrar_seleccion}}
 				                  <td>{{material.codigo}}</td>
-				                  <td>{{material.nombre}}</td>
-				                  <td>{{material.serial}}</td>
+				                  <td>{{material.desc}} {{#if material.serial}}-SE:{{material.serial}} {{/if}}</td>
+				                  <!--<td>{{material.serial}}</td>-->
 				                  <!--<td>{{material.desc}}</td>-->
 				                  <td>{{material.cantidad_seleccion}}</td>
 				                  <td><input type="checkbox" value={{material.codigo}}></td>
@@ -478,11 +478,11 @@
 			                	<p>Código</p>
 			                </th>
 			                <th class="col-md-4">
-			                	<p>Nombre</p>
+			                	<p>Desc</p>
 			                </th>
-			                <th class="col-md-3">
+			                <!--<th class="col-md-3">
 			                	<p>Serial</p>
-			                </th>
+			                </th>-->
 			                <!--<th>Descripción</th>-->
 			                <th class="col-md-1">
 			                	<p>Cantidad Disponible</p>
@@ -503,11 +503,11 @@
 			                  	<p>{{material.codigo}}</p>
 			                  </td>
 			                  <td>
-			                  	<p>{{material.nombre}}</p>
+			                  	<p>{{material.desc}}{{#if material.serial}}-SE:{{material.serial}}{{/if}}</p>
 			                  </td>
-			                  <td>
+			                 <!-- <td>
 			                  	<p>{{material.serial}}</p>
-			                  </td>
+			                  </td>-->
 			                  <!--<td>{{material.desc}}</td>-->
 			                  <td>
 			                  	<p>{{material.cantidad_sin_seleccion}}</p>
