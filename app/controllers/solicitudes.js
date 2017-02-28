@@ -82,6 +82,9 @@ export default Ember.Controller.extend({
 		}else{
 			_this.set('sin_solicitudes',false);
 		}
+		$.each(solicitudes,function(i,solicitud){
+			solicitud.f_sol_mostrar = moment(solicitud.f_sol).format('l');
+		});
 		_this.set('solicitudes',solicitudes);
 	},
 	validarReporteInicial(){
@@ -101,7 +104,7 @@ export default Ember.Controller.extend({
 				},
 				desc:{
 					required:true,
-					maxlength:500,
+					maxlength:1500,
 				},
 				observ:{
 					required:true,

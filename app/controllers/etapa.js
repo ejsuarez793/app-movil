@@ -39,7 +39,7 @@ export default Ember.Controller.extend({
 	setEtapa(etapa,context){
 		var _this = context;
 		_this.set('etapa',etapa);
-		console.log(etapa);
+		//console.log(etapa);
 	},
 	llamadaServidor(method,url,data,callback,context){
 		$.ajax({
@@ -186,6 +186,7 @@ export default Ember.Controller.extend({
 		this.validarReporteDetalle();
         if ($("#formulario_rd").valid()){
         	this.llamadaServidor(method,url,data,this.msgRespuesta,this);
+        	this.init();
         	$("#myModalReporteDetalle").modal('hide');
         }
 		
@@ -210,11 +211,12 @@ export default Ember.Controller.extend({
 		url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' + window.localStorage.getItem('codigo_eta') +'/actividad/';
         if (data.length > 0){
         	this.llamadaServidor(method,url,data,this.msgRespuesta,this);
+        	this.init();
         }else{
         	this.msgRespuesta("Error ","No seleccionaste ninguna actividad para completar.",-1,this);
         }
         $("#myModalActividades").modal('hide');
-        console.log(data);
+        //console.log(data);
 	},
 	cerrarMsg(){
 		$("#alertMsg").hide();
@@ -272,6 +274,7 @@ export default Ember.Controller.extend({
 			url = window.serverUrl + '/tecnico/proyecto/' + window.localStorage.getItem('codigo_pro') + '/etapa/' + window.localStorage.getItem('codigo_eta') +'/solicitud/';
 	        if (data.materiales.length > 0){
 	        	this.llamadaServidor(method,url,data,this.msgRespuesta,this);
+	        	this.init();
 	        	
 	        }else{
 	        	this.msgRespuesta("Error ","No seleccionaste ningún material",-1,this);
@@ -374,6 +377,7 @@ export default Ember.Controller.extend({
 	        		this.msgRespuesta("Error ","Solo los reportes de tipo 'avance' pueden contener servicios.",-1,this);
 	        	}else{
 	        		this.llamadaServidor(method,url,data,this.msgRespuesta,this);
+	        		this.init();
 	        	}
 	        	$("#myModalReportes").modal('hide');
 	        }
