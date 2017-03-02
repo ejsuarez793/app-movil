@@ -280,23 +280,23 @@
 			          	<table class="table table-condensed table-bordered">
 				            <thead>
 				              <tr>
-				                <th class="col-md-2">Código</th>
+				                <th class="col-md-2">Cod</th>
 				                <th class="col-md-4">Desc</th>
 				                <!--<th class="col-md-3">Serial</th>-->
 				                <!--<th>Descripción</th>-->
-				                <th class="col-md-2">Cantidad</th>
-				                <th class="col-md-1">Seleccion</th>
+				                <th class="col-md-2">Cant</th>
+				                <th class="col-md-1">Sel</th>
 				              </tr>
 				            </thead>
 				            <tbody>
 				              {{#each disponibles as |material|}}
 				              <tr>
 				              	{{#if material.mostrar_seleccion}}
-				                  <td>{{material.codigo}}</td>
-				                  <td>{{material.desc}} {{#if material.serial}}-SE:{{material.serial}} {{/if}}</td>
+				                  <td><p>{{material.codigo}}</p></td>
+				                  <td><p>{{material.desc}} {{#if material.serial}}-SE:{{material.serial}} {{/if}}</p></td>
 				                  <!--<td>{{material.serial}}</td>-->
 				                  <!--<td>{{material.desc}}</td>-->
-				                  <td>{{material.cantidad_seleccion}}</td>
+				                  <td><p>{{material.cantidad_seleccion}}</p></td>
 				                  <td><input type="checkbox" value={{material.codigo}}></td>
 				                {{/if}}
 				              </tr>
@@ -396,16 +396,16 @@
 					            <thead>
 					              <tr>
 					                <th>
-					                	<p>Código</p>
+					                	<p>Cod</p>
 					                </th>
 					                <th>
-					                	<p>Descripción</p>
+					                	<p>Desc</p>
 					                </th>
 					                <th>
-					                	<p>Cantidad</p>
+					                	<p>Cant</p>
 					                </th>
 					                <th>
-					                	<p>Seleccion</p>
+					                	<p>Sel</p>
 					                </th>
 					              </tr>
 					            </thead>
@@ -474,10 +474,10 @@
 		          	<table class="table  table-condensed table-bordered">
 			            <thead>
 			              <tr>
-			                <th class="col-md-2">
-			                	<p>Código</p>
+			                <th class="col-md-1">
+			                	<p>Cód</p>
 			                </th>
-			                <th class="col-md-4">
+			                <th class="col-md-2">
 			                	<p>Desc</p>
 			                </th>
 			                <!--<th class="col-md-3">
@@ -485,13 +485,13 @@
 			                </th>-->
 			                <!--<th>Descripción</th>-->
 			                <th class="col-md-1">
-			                	<p>Cantidad Disponible</p>
+			                	<p>Cant Disp</p>
+			                </th>
+			                <th class="col-md-6">
+			                	<p>Cant Sel</p>
 			                </th>
 			                <th class="col-md-1">
-			                	<p>Cantidad Selección</p>
-			                </th>
-			                <th class="col-md-1">
-			                	<p>Seleccion</p>
+			                	<p>Sel.</p>
 			                </th>
 			              </tr>
 			            </thead>
@@ -514,11 +514,11 @@
 			                  </td>
 			                  <td>
 			                	<p>
-			                  		<input type="number" class="form-control input-sm" id="cant_sel_{{material.codigo}}" min="0" max="{{material.cantidad}}">
+			                  		<input type="number" class="form-control input-sm width-numero" id="cant_sel_{{material.codigo}}" min="0" max="{{material.cantidad}}">
 			                	</p>
 			                  </td>
 			                  <td>
-			                	<p>
+			                	<p class="text-center">
 			                  		<input type="checkbox" value={{material.codigo}}>
 			                  	</p>
 			                  </td>
@@ -537,20 +537,20 @@
 		          	<table class="table  table-condensed table-bordered">
 			            <thead>
 			              <tr>
-			                <th>
-			                	<p>Código</p>
+			                <th class="col-md-1">
+			                	<p>Cod</p>
 			                </th>
-			                <th>
-			                	<p>Descripción</p>
+			                <th class="col-md-2">
+			                	<p>Desc</p>
 			                </th>
-			                <th>
-			                	<p>Cantidad Disponible</p>
+			                <th class="col-md-1">
+			                	<p>Cant Disp</p>
 			                </th>
-			                <th>
-			                	<p>Cantidad Solicitud</p>
+			                <th class="col-md-7">
+			                	<p>Cant Sol</p>
 			                </th>
-			                <th>
-			                	<p>Seleccion</p>
+			                <th class="col-md-1">
+			                	<p>Sel</p>
 			                </th>
 			              </tr>
 			            </thead>
@@ -569,7 +569,7 @@
 			                  </td>
 			                  <td>
 			                  	<p>
-			                  	<input type="number" class="form-control input-sm" id="cant_sel_{{servicio.codigo}}" min="0" max="{{servicio.cantidad}}">
+			                  	<input type="number" class="form-control input-sm width-numero" id="cant_sel_{{servicio.codigo}}" min="0" max="{{servicio.cantidad}}">
 			                  	</p>
 			                  </td>
 			                  <td>

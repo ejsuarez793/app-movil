@@ -337,7 +337,7 @@ export default Ember.Controller.extend({
 		openModalReporte(){
 			$("#myModalReportes").modal('show');
 			var elementos = $.extend(true,[],this.get('etapa.servicios').toArray());
-
+			this.set('reporte',{});
 			// ahora cada elemento lo inicializamos para no ser mostrado como seleccionado inicialmente
 			//sino que aparece sin seleccion
 			$.each(elementos,function(i,elemento){

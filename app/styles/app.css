@@ -35,3 +35,11 @@ p{
 	word-wrap: break-word !important;
 	white-space: normal !important;
 }
+
+.width-numero{
+  width:80px; 
+}
+
+/*.col-numero{
+  text-align: right,
+}*/
